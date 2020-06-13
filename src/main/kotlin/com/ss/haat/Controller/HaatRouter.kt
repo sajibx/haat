@@ -196,6 +196,18 @@ class HaatController(val userRepo:User_Repository, val animalRepo:Animal_Reposit
         }
     }
 
+    @GetMapping("/get/{get}")
+    fun get(@PathVariable get:String):String
+    {
+        return get
+    }
+
+    @GetMapping("/getall")
+    fun getall(): MutableList<User>
+    {
+        return userRepo.findAll()
+    }
+
 
     @PostMapping("/animal/{animal_name}/{animal_des}/{animal_price_new}/{animal_price_old}/{animal_type}/{animal_contact}/{animal_owner}")
     fun animal_post(
