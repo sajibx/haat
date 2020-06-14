@@ -29,7 +29,7 @@ class HaatController(val userRepo:User_Repository, val animalRepo:Animal_Reposit
     {
         var num = userRepo.getByPhone(reg.phone)
 
-        return try
+        try
         {
             if (num!!.name!!.isEmpty())
             {
@@ -60,13 +60,13 @@ class HaatController(val userRepo:User_Repository, val animalRepo:Animal_Reposit
     fun login(@RequestBody lgn:login) : ret
     {
         var k = userRepo.getByPhone(lgn.phone)
+        var k1 = ret("user dosent exist")
 
-        return try
+        try
         {
             if (k!!.phone!!.isEmpty())
             {
-                var k = ret("user dosent exist")
-                return k
+                return k1
             }
             else
             {
@@ -79,46 +79,44 @@ class HaatController(val userRepo:User_Repository, val animalRepo:Animal_Reposit
                         var token = token(lgn.phone!!)
                         data.token = token
                         userRepo.save(data)
-                        var k = ret(token)
-                        return k
+                        var tokens = ret(token)
+                        return tokens
                     }
                     else
                     {
-                        var k = ret("user dosent exist")
-                        return k
+                        return k1
                     }
                 }
                 else
                 {
-                    var k = ret("password didnt match")
-                    return k
+                    return k1
                 }
             }
         }
         catch (e:Exception)
         {
+            var k2 = ret("user dosent exist")
+            var k3 = ret("password didnt match")
             if (lgn.phone==k!!.phone && lgn.password==k.password)
             {
                 val s = userRepo.findById(k.id_user!!)
-                return if (s.isPresent)
+                if (s.isPresent)
                 {
                     var data = s.get()
                     var token = token(lgn.phone!!)
                     data.token = token
                     userRepo.save(data)
-                    var k = ret(token)
-                    k
+                    var kret = ret(token)
+                    return kret
                 }
                 else
                 {
-                    var k = ret("password didnt match")
-                    k
+                    return k3
                 }
             }
             else
             {
-                var k = ret("user dosent exist")
-                return k
+                return k2
             }
         }
     }
