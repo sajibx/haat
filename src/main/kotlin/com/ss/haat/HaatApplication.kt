@@ -22,19 +22,17 @@ class HaatApplication: SpringBootServletInitializer() {
 
 	@Autowired
 	lateinit var fileStorage: FileStorage
-
+    @RequestMapping("/")
+	@ResponseBody
+    fun test():String
+    {
+	   return  "test"
+    }
 //	@Bean
 //	fun run() = CommandLineRunner {
 //		fileStorage.deleteAll()
 //		fileStorage.init()
 //	}
-	@RequestMapping("/")
-	@ResponseBody
-	fun res():String
-{
-	return  "hey"
-}
-
 }
 
 fun main(args: Array<String>) {
