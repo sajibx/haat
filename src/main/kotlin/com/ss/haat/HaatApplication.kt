@@ -2,8 +2,8 @@ package com.ss.haat
 
 import com.ss.haat.Service.FileStorage
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.boot.runApplication
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean
@@ -12,13 +12,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.filter.CommonsRequestLoggingFilter
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-
-
 @Controller
+@RestController
 @SpringBootApplication
 class HaatApplication: SpringBootServletInitializer() {
 
@@ -30,9 +30,6 @@ class HaatApplication: SpringBootServletInitializer() {
     {
 	   return  "test"
     }
-	override fun configure(application: SpringApplicationBuilder): SpringApplicationBuilder? {
-		return application.sources(HaatApplication::class.java)
-	}
 //	@Bean
 //	fun run() = CommandLineRunner {
 //		fileStorage.deleteAll()
