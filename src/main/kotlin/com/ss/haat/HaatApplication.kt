@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.stereotype.Controller
+import org.springframework.web.WebApplicationInitializer
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.filter.CommonsRequestLoggingFilter
@@ -18,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 @Controller
 @SpringBootApplication
-class HaatApplication: SpringBootServletInitializer() {
+class HaatApplication: SpringBootServletInitializer(), WebApplicationInitializer {
 
 	@Autowired
 	lateinit var fileStorage: FileStorage
