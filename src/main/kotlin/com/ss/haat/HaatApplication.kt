@@ -14,13 +14,15 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-
+@Controller
 @SpringBootApplication
 class HaatApplication: SpringBootServletInitializer() {
 
 	@Autowired
 	lateinit var fileStorage: FileStorage
-
+	fun main(args: Array<String>) {
+		runApplication<HaatApplication>(*args)
+	}
 //	@Bean
 //	fun run() = CommandLineRunner {
 //		fileStorage.deleteAll()
@@ -28,9 +30,6 @@ class HaatApplication: SpringBootServletInitializer() {
 //	}
 }
 
-fun main(args: Array<String>) {
-	runApplication<HaatApplication>(*args)
-}
 
 @Configuration
 @EnableWebMvc
