@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.filter.CommonsRequestLoggingFilter
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
@@ -22,16 +20,7 @@ class HaatApplication: SpringBootServletInitializer() {
 
 	@Autowired
 	lateinit var fileStorage: FileStorage
-	fun main(args: Array<String>) {
-		runApplication<HaatApplication>(*args)
-	}
 
-	@RequestMapping("/")
-	@ResponseBody
-	fun res() :String
-	{
-		return "hey"
-	}
 //	@Bean
 //	fun run() = CommandLineRunner {
 //		fileStorage.deleteAll()
@@ -39,6 +28,9 @@ class HaatApplication: SpringBootServletInitializer() {
 //	}
 }
 
+fun main(args: Array<String>) {
+	runApplication<HaatApplication>(*args)
+}
 
 @Configuration
 @EnableWebMvc
